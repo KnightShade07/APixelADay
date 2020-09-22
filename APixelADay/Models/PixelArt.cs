@@ -13,6 +13,10 @@ namespace APixelADay.Models
         /// </summary>
         [Key]
         public int PixelArtID { get; set; }
+        /// <summary>
+        /// The datatype used for storing images.
+        /// </summary>
+        public byte[] Image { get; set; }
 
         /// <summary>
         /// The title given to pixel art
