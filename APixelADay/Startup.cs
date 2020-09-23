@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using APixelADay.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +15,7 @@ namespace APixelADay
 {
     public class Startup
     {
+        private IConfiguration _config;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,6 +26,10 @@ namespace APixelADay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AddDbContextPool is better than DbContext because it does not
+            //create a new connection every single time this is called,
+            //it checks for an existing Dbcontext method.
+            services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(_config.GetConnectionString("PixelArtDBConnection")));
             services.AddControllersWithViews();
         }
 
