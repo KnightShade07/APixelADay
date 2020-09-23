@@ -15,7 +15,7 @@ namespace APixelADay
 {
     public class Startup
     {
-        private IConfiguration _config;
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,7 +29,7 @@ namespace APixelADay
             //AddDbContextPool is better than DbContext because it does not
             //create a new connection every single time this is called,
             //it checks for an existing Dbcontext method.
-            services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(_config.GetConnectionString("PixelArtDBConnection")));
+            services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PixelArtDBConnection")));
             services.AddControllersWithViews();
         }
 
