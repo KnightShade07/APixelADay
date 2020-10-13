@@ -24,6 +24,7 @@ namespace APixelADay.Controllers
 
         public IActionResult AddPixel()
         {
+            //missing DB Context Object, Suggestion: Come back to this issue later and instead, create a PixelArtDB Class
             //redirect back to Gallery Page
             return RedirectToAction("Gallery");
         }
