@@ -9,6 +9,11 @@ namespace APixelADay.Controllers
 {
     public class GalleryController : Controller
     {
+        private readonly PixelDBContext _context;
+        public GalleryController(PixelDBContext context)
+        {
+            _context = context;
+        }
         public IActionResult Gallery()
         {
             return View();
