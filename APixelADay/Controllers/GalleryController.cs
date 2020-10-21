@@ -16,7 +16,12 @@ namespace APixelADay.Controllers
         }
         public IActionResult Gallery()
         {
-            return View();
+            //Refactor into PixelDBManager class later,
+            //for now, just get it working.
+
+            //gets all the pixel art from the database.
+            List<PixelArt> pixelArts = _context.PixelArts.ToList();
+            return View(pixelArts);
         }
 
         [HttpGet]
@@ -29,7 +34,7 @@ namespace APixelADay.Controllers
 
         public IActionResult AddPixel()
         {
-            //missing DB Context Object, Suggestion: Come back to this issue later and instead, create a PixelArtDB Class
+            
             //redirect back to Gallery Page
             return RedirectToAction("Gallery");
         }
