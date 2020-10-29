@@ -32,9 +32,12 @@ namespace APixelADay.Controllers
 
         [HttpPost]
 
-        public IActionResult AddPixel()
+        public IActionResult Add(PixelArt p)
         {
-            
+            //add to DB
+            _context.PixelArts.Add(p);
+            //makes sure the changes are saved/executed.
+            _context.SaveChanges();
             //redirect back to Gallery Page
             return RedirectToAction("Gallery");
         }
