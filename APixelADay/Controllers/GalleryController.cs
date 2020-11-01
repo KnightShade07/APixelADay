@@ -23,7 +23,7 @@ namespace APixelADay.Controllers
 
             //gets all the pixel art from the database.
             List<PixelArt> pixelArts = (from p in _context.PixelArts
-                                        select p).Skip(3)
+                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
                                         .Take(PageSize)
                                         .ToList();
             return View(pixelArts);
