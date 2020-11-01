@@ -22,7 +22,10 @@ namespace APixelADay.Controllers
             //for now, just get it working.
 
             //gets all the pixel art from the database.
-            List<PixelArt> pixelArts = _context.PixelArts.ToList();
+            List<PixelArt> pixelArts = (from p in _context.PixelArts
+                                        select p).Skip(3)
+                                        .Take(PageSize)
+                                        .ToList();
             return View(pixelArts);
         }
 
