@@ -14,8 +14,10 @@ namespace APixelADay.Controllers
         {
             _context = context;
         }
-        public IActionResult Gallery()
+        public IActionResult Gallery(int? id)
         {
+            int pageNum = id ?? 1;
+            const int PageSize = 3;
             //Refactor into PixelDBManager class later,
             //for now, just get it working.
 
