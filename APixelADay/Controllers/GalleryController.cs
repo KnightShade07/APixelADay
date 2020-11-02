@@ -24,6 +24,8 @@ namespace APixelADay.Controllers
             //prevents integer division.
 
             int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
+            //passes the page data to the view.
+            ViewData["MaxPage"] = totalPages;
             //Refactor into PixelDBManager class later,
             //for now, just get it working.
 
