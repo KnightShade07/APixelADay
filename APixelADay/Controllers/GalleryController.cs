@@ -55,5 +55,16 @@ namespace APixelADay.Controllers
             //redirect back to Gallery Page
             return RedirectToAction("Gallery");
         }
+
+        public IActionResult Edit(int id)
+        {
+            //get pixel art with corrosponding id
+            PixelArt p = (from pixel in _context.PixelArts
+                          where pixel.PixelArtID == id
+                          select pixel).Single(); //gets a single item from the database
+
+            //pass pixel art to view
+            return View(p);
+        }
     }
 }
