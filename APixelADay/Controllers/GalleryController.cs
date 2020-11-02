@@ -79,5 +79,30 @@ namespace APixelADay.Controllers
 
             return View(p);
         }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            PixelArt p = (from pixel in _context.PixelArts
+                          where pixel.PixelArtID == id
+                          select pixel).Single();
+
+            return View(p);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeleteConfirmed (int id)
+        {
+            PixelArt p = (from pixel in _context.PixelArts
+                          where pixel.PixelArtID == id
+                          select pixel).Single();
+
+            _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+
+            _context.SaveChanges();
+
+            TempData["Message"] = $"{p.Title} was deleted successfully!";
+
+            return RedirectToAction("Gallery");
+        }
     }
 }
