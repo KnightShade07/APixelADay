@@ -50,10 +50,9 @@
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a class="btn btn-secondary" asp-route-id="@p.PixelArtID" asp-action="Edit">Edit</a>
             </td>
+            
         </tr>
 }
     </tbody>
