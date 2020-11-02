@@ -50,10 +50,10 @@
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <!--At Symbol p.ProductID does not work, it produces a "p does not exist in this context" error.-->
+                <a class="btn btn-secondary" asp-route-id="" asp-action="Edit">Edit</a>
             </td>
+            
         </tr>
 }
     </tbody>
