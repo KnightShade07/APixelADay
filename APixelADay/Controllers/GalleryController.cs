@@ -67,12 +67,12 @@ namespace APixelADay.Controllers
             return View(p);
         }
         [HttpPost]
-        public IActionResult Edit(PixelArt p)
+        public async Task <IActionResult> Edit(PixelArt p)
         {
             if (ModelState.IsValid)
             {
                 _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 ViewData["Message"] = "Pixel Art updated successfully!";
             }
