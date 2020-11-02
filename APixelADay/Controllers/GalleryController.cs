@@ -46,14 +46,14 @@ namespace APixelADay.Controllers
 
         [HttpPost]
 
-        public IActionResult Add(PixelArt p)
+        public async Task <IActionResult> Add(PixelArt p)
         {
             //add to DB
             _context.PixelArts.Add(p);
             //makes sure the changes are saved/executed.
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //redirect back to Gallery Page
-            return RedirectToAction("Gallery");
+           return RedirectToAction("Gallery");
         }
 
         public IActionResult Edit(int id)
