@@ -65,8 +65,17 @@
 <ul class="pagination">
     @for (int i = 1; i <= (int)ViewData["MaxPage"]; i++)
     {
-        <li class="page-item">
-            <a class= "page-link" asp-action="Gallery" asp-route-id ="@i">@i</a>
-        </li>
+        if (i == (int)ViewData["CurrentPage"])
+        {
+            <li class="page-item active">
+                <a class="page-link" asp-action="Gallery" asp-route-id="@i">@i</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Gallery" asp-route-id="@i">@i</a>
+            </li>
+        }
     }
 </ul>
