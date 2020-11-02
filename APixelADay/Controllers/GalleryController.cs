@@ -73,6 +73,8 @@ namespace APixelADay.Controllers
             {
                 _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
+
+                ViewData["Message"] = "Pixel Art updated successfully!";
             }
 
             return View(p);
