@@ -90,7 +90,7 @@ namespace APixelADay.Controllers
         }
         [HttpPost]
         [ActionName("Delete")]
-        public IActionResult DeleteConfirmed (int id)
+        public async Task <IActionResult> DeleteConfirmed (int id)
         {
             PixelArt p = (from pixel in _context.PixelArts
                           where pixel.PixelArtID == id
@@ -98,7 +98,7 @@ namespace APixelADay.Controllers
 
             _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
-            _context.SaveChanges();
+             await _context.SaveChangesAsync();
 
             TempData["Message"] = $"{p.Title} was deleted successfully!";
 
