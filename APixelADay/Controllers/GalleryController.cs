@@ -18,6 +18,12 @@ namespace APixelADay.Controllers
         {
             int pageNum = id ?? 1;
             const int PageSize = 3;
+
+            int numPixels = (from p in _context.PixelArts
+                             select p).Count();
+            //prevents integer division.
+
+            int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
             //Refactor into PixelDBManager class later,
             //for now, just get it working.
 
