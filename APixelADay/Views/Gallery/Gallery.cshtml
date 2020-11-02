@@ -66,7 +66,7 @@
     @for (int i = 1; i <= (int)ViewData["MaxPage"]; i++)
     {
         <li class="page-item">
-            <a class= page-link>@i</a>
+            <a class= "page-link" asp-action="Gallery" asp-route-id ="@i">@i</a>
         </li>
     }
 </ul>
