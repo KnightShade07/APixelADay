@@ -66,5 +66,16 @@ namespace APixelADay.Controllers
             //pass pixel art to view
             return View(p);
         }
+        [HttpPost]
+        public IActionResult Edit(PixelArt p)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.SaveChanges();
+            }
+
+            return View(p);
+        }
     }
 }
