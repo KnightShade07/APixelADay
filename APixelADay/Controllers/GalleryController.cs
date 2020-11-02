@@ -79,5 +79,14 @@ namespace APixelADay.Controllers
 
             return View(p);
         }
+
+        public IActionResult Delete(int id)
+        {
+            PixelArt p = (from pixel in _context.PixelArts
+                          where pixel.PixelArtID == id
+                          select pixel).Single();
+
+            return View(p);
+        }
     }
 }
