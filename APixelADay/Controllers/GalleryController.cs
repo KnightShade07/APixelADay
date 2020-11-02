@@ -46,14 +46,14 @@ namespace APixelADay.Controllers
 
         [HttpPost]
 
-        public IActionResult Add(PixelArt p)
+        public async Task <IActionResult> Add(PixelArt p)
         {
             //add to DB
             _context.PixelArts.Add(p);
             //makes sure the changes are saved/executed.
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //redirect back to Gallery Page
-            return RedirectToAction("Gallery");
+           return RedirectToAction("Gallery");
         }
 
         public IActionResult Edit(int id)
@@ -67,12 +67,12 @@ namespace APixelADay.Controllers
             return View(p);
         }
         [HttpPost]
-        public IActionResult Edit(PixelArt p)
+        public async Task <IActionResult> Edit(PixelArt p)
         {
             if (ModelState.IsValid)
             {
                 _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 ViewData["Message"] = "Pixel Art updated successfully!";
             }
@@ -90,7 +90,7 @@ namespace APixelADay.Controllers
         }
         [HttpPost]
         [ActionName("Delete")]
-        public IActionResult DeleteConfirmed (int id)
+        public async Task <IActionResult> DeleteConfirmed (int id)
         {
             PixelArt p = (from pixel in _context.PixelArts
                           where pixel.PixelArtID == id
@@ -98,7 +98,7 @@ namespace APixelADay.Controllers
 
             _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
-            _context.SaveChanges();
+             await _context.SaveChangesAsync();
 
             TempData["Message"] = $"{p.Title} was deleted successfully!";
 
