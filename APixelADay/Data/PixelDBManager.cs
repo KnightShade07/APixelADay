@@ -21,6 +21,13 @@ namespace APixelADay.Data
         {
 
         }
+        /// <summary>
+        /// Gets a single piece of pixel art from the database.
+        /// </summary>
+        public static void GetSinglePixel()
+        {
+
+        }
 
 
     }
