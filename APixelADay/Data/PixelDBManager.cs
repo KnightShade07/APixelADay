@@ -13,5 +13,22 @@ namespace APixelADay.Data
     /// </summary>
     public class PixelDBManager
     {
+        //The methods do not have to be async right now, just get them down on paper...err, computer screen!
+        /// <summary>
+        /// Gets a page of pixel arts from the database.
+        /// </summary>
+       public static void GetPageOfPixels()
+        {
+
+        }
+        /// <summary>
+        /// Gets a single piece of pixel art from the database.
+        /// </summary>
+        public static void GetSinglePixel()
+        {
+
+        }
+
+
     }
 }
