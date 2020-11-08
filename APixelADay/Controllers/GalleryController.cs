@@ -104,5 +104,10 @@ namespace APixelADay.Controllers
 
             return RedirectToAction("Gallery");
         }
+
+        public IActionResult PixelArtOfTheDay()
+        {
+            return View();
+        }
     }
 }
