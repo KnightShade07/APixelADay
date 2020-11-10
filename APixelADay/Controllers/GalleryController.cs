@@ -21,8 +21,7 @@ namespace APixelADay.Controllers
             const int PageSize = 3;
             ViewData["CurrentPage"] = pageNum;
 
-            int numPixels = (from p in _context.PixelArts
-                             select p).Count();
+            int numPixels = PixelDBManager.GetTotalPixels(_context);
             //prevents integer division.
 
             int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
