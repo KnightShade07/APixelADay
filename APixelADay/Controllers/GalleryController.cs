@@ -56,9 +56,7 @@ namespace APixelADay.Controllers
         public IActionResult Edit(int id)
         {
             //get pixel art with corrosponding id
-            PixelArt p = (from pixel in _context.PixelArts
-                          where pixel.PixelArtID == id
-                          select pixel).Single(); //gets a single item from the database
+            PixelArt p = PixelDBManager.GetSinglePixelAsync(id, _context);
 
             //pass pixel art to view
             return View(p);
@@ -79,9 +77,7 @@ namespace APixelADay.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            PixelArt p = (from pixel in _context.PixelArts
-                          where pixel.PixelArtID == id
-                          select pixel).Single();
+            PixelArt p = PixelDBManager.GetSinglePixelAsync(id, _context);
 
             return View(p);
         }
@@ -89,9 +85,7 @@ namespace APixelADay.Controllers
         [ActionName("Delete")]
         public async Task <IActionResult> DeleteConfirmed (int id)
         {
-            PixelArt p = (from pixel in _context.PixelArts
-                          where pixel.PixelArtID == id
-                          select pixel).Single();
+            PixelArt p = PixelDBManager.GetSinglePixelAsync(id, _context);
 
             _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
