@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APixelADay.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,9 +25,12 @@ namespace APixelADay.Data
         /// <summary>
         /// Gets a single piece of pixel art from the database.
         /// </summary>
-        public static void GetSinglePixel()
+        public static void GetSinglePixel(int id, PixelDBContext _context)
         {
-
+            //get pixel art with corrosponding id
+            PixelArt p = (from pixel in _context.PixelArts
+                          where pixel.PixelArtID == id
+                          select pixel).Single(); //gets a single item from the database
         }
 
 
