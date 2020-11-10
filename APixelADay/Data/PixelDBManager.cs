@@ -27,9 +27,13 @@ namespace APixelADay.Data
         /// <summary>
         /// Gets a page of pixel arts from the database.
         /// </summary>
-       public static void GetPageOfPixels()
+       public async static Task <List<PixelArt>> GetPageOfPixels(PixelDBContext _context, int PageSize, int pageNum)
         {
-
+            List<PixelArt> pixelArts =  await (from p in _context.PixelArts
+                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
+                                        .Take(PageSize)
+                                        .ToListAsync();
+            return pixelArts;
         }
         /// <summary>
         /// Gets a single piece of pixel art from the database.
