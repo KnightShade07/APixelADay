@@ -19,7 +19,7 @@ namespace APixelADay.Data
         /// <summary>
         /// Gets all pixels from the database.
         /// </summary>
-        public async static  Task<int> GetTotalPixels(PixelDBContext _context)
+        public async static  Task<int> GetTotalPixelsAsync(PixelDBContext _context)
         {
             return await (from p in _context.PixelArts
                     select p).CountAsync();
@@ -27,7 +27,7 @@ namespace APixelADay.Data
         /// <summary>
         /// Gets a page of pixel arts from the database.
         /// </summary>
-       public async static Task <List<PixelArt>> GetPageOfPixels(PixelDBContext _context, int PageSize, int pageNum)
+       public async static Task <List<PixelArt>> GetPageOfPixelsAsync(PixelDBContext _context, int PageSize, int pageNum)
         {
             List<PixelArt> pixelArts =  await (from p in _context.PixelArts
                                         select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
@@ -38,12 +38,13 @@ namespace APixelADay.Data
         /// <summary>
         /// Gets a single piece of pixel art from the database.
         /// </summary>
-        public static void GetSinglePixel(int id, PixelDBContext _context)
+        public static async Task<int>  GetSinglePixelAsync(int id, PixelDBContext _context)
         {
             //get pixel art with corrosponding id
-            PixelArt p = (from pixel in _context.PixelArts
+            return  await(from pixel in _context.PixelArts
                           where pixel.PixelArtID == id
-                          select pixel).Single(); //gets a single item from the database
+                          select pixel).SingleAsync(); //gets a single item from the database
+            
         }
 
 

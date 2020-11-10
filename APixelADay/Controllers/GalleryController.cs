@@ -21,7 +21,7 @@ namespace APixelADay.Controllers
             const int PageSize = 3;
             ViewData["CurrentPage"] = pageNum;
 
-            int numPixels = PixelDBManager.GetTotalPixels(_context);
+            int numPixels = PixelDBManager.GetTotalPixelsAsync(_context);
             //prevents integer division.
 
             int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
@@ -31,10 +31,7 @@ namespace APixelADay.Controllers
             //for now, just get it working.
 
             //gets all the pixel art from the database.
-            List<PixelArt> pixelArts = (from p in _context.PixelArts
-                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
-                                        .Take(PageSize)
-                                        .ToList();
+            List<PixelArt> pixelArts = PixelDBManager.GetPageOfPixelsAsync(_context, PageSize, pageNum);
             return View(pixelArts);
         }
 
