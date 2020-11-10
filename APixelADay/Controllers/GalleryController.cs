@@ -15,13 +15,13 @@ namespace APixelADay.Controllers
         {
             _context = context;
         }
-        public IActionResult Gallery(int? id)
+        public async Task<IActionResult> Gallery(int? id)
         {
             int pageNum = id ?? 1;
             const int PageSize = 3;
             ViewData["CurrentPage"] = pageNum;
 
-            int numPixels = PixelDBManager.GetTotalPixelsAsync(_context);
+            int numPixels =  await PixelDBManager.GetTotalPixelsAsync(_context);
             //prevents integer division.
 
             int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
