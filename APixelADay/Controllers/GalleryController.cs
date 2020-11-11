@@ -31,7 +31,7 @@ namespace APixelADay.Controllers
             //for now, just get it working.
 
             //gets all the pixel art from the database.
-            List<PixelArt> pixelArts = PixelDBManager.GetPageOfPixelsAsync(_context, PageSize, pageNum);
+            List<PixelArt> pixelArts =  await PixelDBManager.GetPageOfPixelsAsync(_context, PageSize, pageNum);
             return View(pixelArts);
         }
 
@@ -53,10 +53,10 @@ namespace APixelADay.Controllers
            return RedirectToAction("Gallery");
         }
 
-        public IActionResult Edit(int id)
+        public  async Task <IActionResult> Edit(int id)
         {
             //get pixel art with corrosponding id
-            PixelArt p = PixelDBManager.GetSinglePixelAsync(id, _context);
+            PixelArt p =  await PixelDBManager.GetSinglePixelAsync(id, _context);
 
             //pass pixel art to view
             return View(p);
