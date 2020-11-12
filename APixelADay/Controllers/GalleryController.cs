@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using APixelADay.Data;
 using APixelADay.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +15,13 @@ namespace APixelADay.Controllers
         {
             _context = context;
         }
-        public IActionResult Gallery(int? id)
+        public async Task<IActionResult> Gallery(int? id)
         {
             int pageNum = id ?? 1;
             const int PageSize = 3;
             ViewData["CurrentPage"] = pageNum;
 
-            int numPixels = (from p in _context.PixelArts
-                             select p).Count();
+            int numPixels =  await PixelDBManager.GetTotalPixelsAsync(_context);
             //prevents integer division.
 
             int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
@@ -31,10 +31,7 @@ namespace APixelADay.Controllers
             //for now, just get it working.
 
             //gets all the pixel art from the database.
-            List<PixelArt> pixelArts = (from p in _context.PixelArts
-                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
-                                        .Take(PageSize)
-                                        .ToList();
+            List<PixelArt> pixelArts =  await PixelDBManager.GetPageOfPixelsAsync(_context, PageSize, pageNum);
             return View(pixelArts);
         }
 
@@ -56,12 +53,10 @@ namespace APixelADay.Controllers
            return RedirectToAction("Gallery");
         }
 
-        public IActionResult Edit(int id)
+        public  async Task <IActionResult> Edit(int id)
         {
             //get pixel art with corrosponding id
-            PixelArt p = (from pixel in _context.PixelArts
-                          where pixel.PixelArtID == id
-                          select pixel).Single(); //gets a single item from the database
+            PixelArt p =  await PixelDBManager.GetSinglePixelAsync(id, _context);
 
             //pass pixel art to view
             return View(p);
@@ -80,11 +75,9 @@ namespace APixelADay.Controllers
             return View(p);
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public  async Task<IActionResult> Delete(int id)
         {
-            PixelArt p = (from pixel in _context.PixelArts
-                          where pixel.PixelArtID == id
-                          select pixel).Single();
+            PixelArt p = await PixelDBManager.GetSinglePixelAsync(id, _context);
 
             return View(p);
         }
@@ -92,9 +85,7 @@ namespace APixelADay.Controllers
         [ActionName("Delete")]
         public async Task <IActionResult> DeleteConfirmed (int id)
         {
-            PixelArt p = (from pixel in _context.PixelArts
-                          where pixel.PixelArtID == id
-                          select pixel).Single();
+            PixelArt p =  await PixelDBManager.GetSinglePixelAsync(id, _context);
 
             _context.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
