@@ -38,7 +38,7 @@ namespace APixelADay.Data
         /// <summary>
         /// Gets a single piece of pixel art from the database.
         /// </summary>
-        public static async Task<int>  GetSinglePixelAsync(int id, PixelDBContext _context)
+        public static async Task<PixelArt>  GetSinglePixelAsync(int id, PixelDBContext _context)
         {
             //get pixel art with corrosponding id
             return  await(from pixel in _context.PixelArts
