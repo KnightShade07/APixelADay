@@ -31,25 +31,12 @@ namespace APixelADay
             //create a new connection every single time this is called,
             //it checks for an existing Dbcontext method.
             services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PixelArtDBConnection")));
-            services.AddDefaultIdentity<IdentityUser>(SetIdentityOptions);
+            services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions);
            
             services.AddControllersWithViews();
         }
 
-        private static void SetIdentityOptions(IdentityOptions options)
-        {
-            //setting sign in options.
-            options.SignIn.RequireConfirmedEmail = false;
-            options.SignIn.RequireConfirmedPhoneNumber = false;
-
-            //sets password strength.
-            options.Password.RequireDigit = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequiredLength = 10;
-            options.Password.RequireNonAlphanumeric = false;
-           
-        }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
