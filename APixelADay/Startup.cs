@@ -70,7 +70,7 @@ namespace APixelADay
             //Create roles here!
             IServiceScope serviceProvider = app.ApplicationServices.GetRequiredService<IServiceProvider>().CreateScope();
 
-
+            IdentityHelper.CreateRoles(serviceProvider.ServiceProvider, IdentityHelper.Administrator, IdentityHelper.User).Wait();
 
         }
     }
