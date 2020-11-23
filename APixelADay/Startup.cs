@@ -6,6 +6,7 @@ using APixelADay.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,8 +31,14 @@ namespace APixelADay
             //create a new connection every single time this is called,
             //it checks for an existing Dbcontext method.
             services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PixelArtDBConnection")));
+            services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions)
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<PixelDBContext>();
+            
+           
             services.AddControllersWithViews();
         }
+
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,6 +66,12 @@ namespace APixelADay
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //Create roles here!
+            IServiceScope serviceProvider = app.ApplicationServices.GetRequiredService<IServiceProvider>().CreateScope();
+
+            IdentityHelper.CreateRoles(serviceProvider.ServiceProvider, IdentityHelper.Administrator, IdentityHelper.User).Wait();
+
         }
     }
 }
