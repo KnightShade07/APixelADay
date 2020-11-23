@@ -14,14 +14,14 @@ namespace APixelADay.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
+            /*builder.ConfigureServices((context, services) => {
                 services.AddDbContext<APixelADayContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("APixelADayContextConnection")));
 
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<APixelADayContext>();
-            });
+                    .AddEntityFrameworkStores<APixelADayContext>(); 
+            }); */
         }
     }
 }

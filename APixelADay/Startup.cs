@@ -32,7 +32,7 @@ namespace APixelADay
             //it checks for an existing Dbcontext method.
             services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PixelArtDBConnection")));
             services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions)
-                .AddRoles<IdentityRole>().AddEntityFrameworkStores<DbContext>();
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<PixelDBContext>();
             
            
             services.AddControllersWithViews();
