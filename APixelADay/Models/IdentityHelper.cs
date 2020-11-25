@@ -42,6 +42,28 @@ namespace APixelADay.Models
                 }
             }
         }
-        
+
+        internal static async Task CreateDefaultAdministrator(IServiceProvider serviceProvider)
+        {
+            const string email = "admin@yahoo.com";
+            const string username = "Admin";
+            const string password = "TestPassword356";
+
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            //checks if users are in the database.
+            if(userManager.Users.Count() == 0)
+            {
+                IdentityUser admin = new IdentityUser()
+                {
+                    Email = email,
+                    UserName = username
+                };
+                //create the administrator.
+                await userManager.CreateAsync(admin, password);
+                //add to admin role.
+                await userManager.AddToRoleAsync(admin, Administrator);
+            }
+        }
     }
 }
