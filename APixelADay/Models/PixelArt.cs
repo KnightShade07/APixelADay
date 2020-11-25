@@ -15,7 +15,7 @@ namespace APixelADay.Models
         [Key]
         public int PixelArtID { get; set; }
         /// <summary>
-        /// The datatype used for storing images.
+        /// The datatype used for storing images. Storied in Binary numbers (0,1s)
         /// </summary>
         public byte[] Image { get; set; }
 
