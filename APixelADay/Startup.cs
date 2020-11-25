@@ -33,7 +33,7 @@ namespace APixelADay
             services.AddDbContextPool<PixelDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PixelArtDBConnection")));
             services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions)
                 .AddRoles<IdentityRole>().AddEntityFrameworkStores<PixelDBContext>();
-            
+            services.AddRazorPages();
            
             services.AddControllersWithViews();
         }
@@ -65,6 +65,7 @@ namespace APixelADay
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             //Create roles here!
