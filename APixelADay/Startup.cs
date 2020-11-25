@@ -72,6 +72,8 @@ namespace APixelADay
 
             IdentityHelper.CreateRoles(serviceProvider.ServiceProvider, IdentityHelper.Administrator, IdentityHelper.User).Wait();
 
+            IdentityHelper.CreateDefaultAdministrator(serviceProvider.ServiceProvider).Wait();
+
         }
     }
 }
