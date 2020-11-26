@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using APixelADay.Data;
@@ -49,7 +50,21 @@ namespace APixelADay.Controllers
 
             //TODO: Validate Product Photo.
             IFormFile Pixel = p.PixelArtPhoto;
-            
+
+            if(Pixel.Length > 0)
+            {
+                //Add Error.
+                //return view.
+            }
+
+            string extension = Path.GetExtension(Pixel.FileName).ToLower();
+            string[] permittedExtensions = { ".png", ".gif" };
+            if (!permittedExtensions.Contains(extension))
+            {
+                //Add error message
+                //return view.
+            }
+
             //Generate Unique file name.
             //Save to storage.
 
