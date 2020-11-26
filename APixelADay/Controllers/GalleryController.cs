@@ -43,7 +43,7 @@ namespace APixelADay.Controllers
         }
 
         [HttpPost]
-
+        [RequestSizeLimit(31457280)] //30 MB for now, change it later based on the size of the pixel art's data consumption.
         public async Task <IActionResult> Add(PixelArt p)
         {
 
