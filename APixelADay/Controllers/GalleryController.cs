@@ -7,13 +7,15 @@ using APixelADay.Data;
 using APixelADay.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace APixelADay.Controllers
 {
     public class GalleryController : Controller
     {
         private readonly PixelDBContext _context;
-        public GalleryController(PixelDBContext context)
+        private readonly IConfiguration _config;
+        public GalleryController(PixelDBContext context, IConfiguration config)
         {
             _context = context;
         }
@@ -68,6 +70,7 @@ namespace APixelADay.Controllers
 
             //Generate Unique file name.
             //Save to storage.
+
 
 
             //add to DB
