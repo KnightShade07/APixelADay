@@ -59,6 +59,7 @@ namespace APixelADay.Controllers
 
             string extension = Path.GetExtension(Pixel.FileName).ToLower();
             string[] permittedExtensions = { ".png", ".gif" };
+
             if (!permittedExtensions.Contains(extension))
             {
                 //Add error message
