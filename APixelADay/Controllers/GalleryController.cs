@@ -18,6 +18,7 @@ namespace APixelADay.Controllers
         public GalleryController(PixelDBContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
         public async Task<IActionResult> Gallery(int? id)
         {
@@ -70,7 +71,8 @@ namespace APixelADay.Controllers
 
             //Generate Unique file name.
             //Save to storage.
-
+           string account = _config.GetSection("StorageAccountName").Value;
+           string key = _config.GetSection("StorageAccountKey").Value;
 
 
             //add to DB
