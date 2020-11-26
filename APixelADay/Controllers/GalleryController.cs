@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using APixelADay.Data;
 using APixelADay.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APixelADay.Controllers
@@ -45,6 +46,14 @@ namespace APixelADay.Controllers
 
         public async Task <IActionResult> Add(PixelArt p)
         {
+
+            //TODO: Validate Product Photo.
+            IFormFile Pixel = p.PixelArtPhoto;
+            
+            //Generate Unique file name.
+            //Save to storage.
+
+
             //add to DB
             _context.PixelArts.Add(p);
             //makes sure the changes are saved/executed.
