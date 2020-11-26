@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using APixelADay.Data;
 using APixelADay.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APixelADay.Controllers
@@ -42,9 +44,31 @@ namespace APixelADay.Controllers
         }
 
         [HttpPost]
-
+        [RequestSizeLimit(31457280)] //30 MB for now, change it later based on the size of the pixel art's data consumption.
         public async Task <IActionResult> Add(PixelArt p)
         {
+
+            //TODO: Validate Product Photo.
+            IFormFile Pixel = p.PixelArtPhoto;
+
+            if(Pixel.Length > 0)
+            {
+                //Add Error.
+                //return view.
+            }
+
+            string extension = Path.GetExtension(Pixel.FileName).ToLower();
+            string[] permittedExtensions = { ".png", ".gif" };
+            if (!permittedExtensions.Contains(extension))
+            {
+                //Add error message
+                //return view.
+            }
+
+            //Generate Unique file name.
+            //Save to storage.
+
+
             //add to DB
             _context.PixelArts.Add(p);
             //makes sure the changes are saved/executed.

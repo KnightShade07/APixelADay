@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,8 +18,16 @@ namespace APixelADay.Models
         public int PixelArtID { get; set; }
         /// <summary>
         /// The datatype used for storing images. Storied in Binary numbers (0,1s)
+        /// NOTE: Mr Ortiz uses a PhotoURL Variable instead, consult him on Monday for possible courses of action.
         /// </summary>
         public byte[] Image { get; set; }
+        [NotMapped]
+        public IFormFile PixelArtPhoto { get; set; }
+
+        //This results in an invalid column name, for now just comment this out and get help from Mr.
+        //Ortiz on Monday
+
+        //public string PixelArtURL { get; set; }
 
         /// <summary>
         /// The title given to pixel art
