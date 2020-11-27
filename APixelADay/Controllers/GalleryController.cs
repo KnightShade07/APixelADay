@@ -72,16 +72,13 @@ namespace APixelADay.Controllers
                 //return view.
             }
 
-            
+            string con = _config.GetSection("BlobStorageString").Value;
 
-
-            //use real connection string for development, so we can swap out for production
-            //string.
-            BlobServiceClient blobService = new BlobServiceClient("UseDevelopmentStorage=true");
-
+            BlobServiceClient blobService = new BlobServiceClient(con);
 
             //creates container to hold BLOBs.
             BlobContainerClient containerClient = blobService.GetBlobContainerClient("PixelArts");
+            //makes sure container exists
             if (!containerClient.Exists())
             {
                 await containerClient.CreateAsync();
@@ -92,7 +89,7 @@ namespace APixelADay.Controllers
             
 
             //Add BLOB to container.
-            string newfileName = Guid.NewGuid().ToString() + extension;
+            string newfileName = Guid.NewGuid().ToString() + Path.GetExtension(Pixel.FileName);
             BlobClient blobClient = containerClient.GetBlobClient(newfileName);
 
             using FileStream fileStream = System.IO.File.OpenRead("");
