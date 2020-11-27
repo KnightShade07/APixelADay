@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<APixelADay.Models.PixelArt>
-
+@inject Microsoft.Extensions.Configuration.IConfiguration _config
 @{
     ViewData["Title"] = "Gallery";
+    string storageURLStart = _config.GetSection("BlobStorageURL").Value;
 }
 
 <h1>Gallery</h1>
@@ -49,9 +50,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
+                @* {string fullPhotoURL = storageURLStart + item.PixelArtURL}*@
             @*This td is for the PixelArtURL, implement this once the invalid column exception gets fixed*@
 
-            @*<img src="https://localhost:10000/devstoreaccount1/photos/@item.PixelArtURL" height ="150" alt="Photo of @item.Title*@
+            @*<img src="@fullPhotoURL" height ="150" alt="Photo of @item.Title*@
             <td>
 
             </td>
