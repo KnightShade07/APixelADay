@@ -19,6 +19,7 @@ namespace APixelADay.Models
         /// <summary>
         /// The datatype used for storing images. Storied in Binary numbers (0,1s)
         /// NOTE: Mr Ortiz uses a PhotoURL Variable instead, consult him on Monday for possible courses of action.
+        /// This Image variable was a relic from before I started this quarter.
         /// </summary>
         public byte[] Image { get; set; }
         [NotMapped]

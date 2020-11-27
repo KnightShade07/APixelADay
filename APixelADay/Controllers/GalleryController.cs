@@ -5,17 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using APixelADay.Data;
 using APixelADay.Models;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace APixelADay.Controllers
 {
     public class GalleryController : Controller
     {
         private readonly PixelDBContext _context;
-        public GalleryController(PixelDBContext context)
+        private readonly IConfiguration _config;
+        public GalleryController(PixelDBContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
         public async Task<IActionResult> Gallery(int? id)
         {
@@ -51,14 +56,17 @@ namespace APixelADay.Controllers
             //TODO: Validate Product Photo.
             IFormFile Pixel = p.PixelArtPhoto;
 
-            if(Pixel.Length > 0)
+            //This check throws a  NullException, commented out for now, fix it later.
+
+            /*if(Pixel.Length > 0)
             {
                 //Add Error.
                 //return view.
-            }
+            } */
 
             string extension = Path.GetExtension(Pixel.FileName).ToLower();
             string[] permittedExtensions = { ".png", ".gif" };
+
             if (!permittedExtensions.Contains(extension))
             {
                 //Add error message
@@ -67,6 +75,34 @@ namespace APixelADay.Controllers
 
             //Generate Unique file name.
             //Save to storage.
+           string account = _config.GetSection("StorageAccountName").Value;
+           string key = _config.GetSection("StorageAccountKey").Value;
+
+
+            //use real connection string for development, so we can swap out for production
+            //string.
+            BlobServiceClient blobService = new BlobServiceClient("UseDevelopmentStorage=true");
+
+
+            //creates container to hold BLOBs.
+            BlobContainerClient containerClient = blobService.GetBlobContainerClient("PixelArts");
+            if (!containerClient.Exists())
+            {
+                await containerClient.CreateAsync();
+                await containerClient.SetAccessPolicyAsync(PublicAccessType.Blob);
+            }
+
+            
+            
+
+            //Add BLOB to container.
+            string newfileName = Guid.NewGuid().ToString() + extension;
+            BlobClient blobClient = containerClient.GetBlobClient(newfileName);
+
+            using FileStream fileStream = System.IO.File.OpenRead("");
+            await blobClient.UploadAsync(p.PixelArtPhoto.OpenReadStream());
+
+            //uncomment these later once you remake the pages with PixelArtURL
 
 
             //add to DB
