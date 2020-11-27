@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using APixelADay.Data;
 using APixelADay.Models;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -86,6 +87,8 @@ namespace APixelADay.Controllers
             //creates container to hold BLOBs.
             //TODO: Handle Exception if Container already exists.
             BlobContainerClient containerClient = await blobService.CreateBlobContainerAsync("PixelArts");
+
+            await containerClient.SetAccessPolicyAsync(PublicAccessType.Blob);
             
 
             //Add BLOB to container.
