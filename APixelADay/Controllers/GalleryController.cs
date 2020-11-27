@@ -95,7 +95,7 @@ namespace APixelADay.Controllers
             using FileStream fileStream = System.IO.File.OpenRead("");
             await blobClient.UploadAsync(p.PixelArtPhoto.OpenReadStream());
 
-            //uncomment these later once you remake the pages with PixelArtURL
+            
 
 
             //add to DB
