@@ -55,11 +55,13 @@ namespace APixelADay.Controllers
             //TODO: Validate Product Photo.
             IFormFile Pixel = p.PixelArtPhoto;
 
-            if(Pixel.Length > 0)
+            //This check throws a  NullException, commented out for now, fix it later.
+
+            /*if(Pixel.Length > 0)
             {
                 //Add Error.
                 //return view.
-            }
+            } */
 
             string extension = Path.GetExtension(Pixel.FileName).ToLower();
             string[] permittedExtensions = { ".png", ".gif" };
@@ -79,9 +81,12 @@ namespace APixelADay.Controllers
             //use real connection string for development, so we can swap out for production
             //string.
             BlobServiceClient blobService = new BlobServiceClient("UseDevelopmentStorage=true");
+            
 
             //creates container to hold BLOBs.
+            //TODO: Handle Exception if Container already exists.
             BlobContainerClient containerClient = await blobService.CreateBlobContainerAsync("PixelArts");
+            
 
             //Add BLOB to container.
             string newfileName = Guid.NewGuid().ToString() + extension;
@@ -89,6 +94,8 @@ namespace APixelADay.Controllers
 
             using FileStream fileStream = System.IO.File.OpenRead("");
             await blobClient.UploadAsync(p.PixelArtPhoto.OpenReadStream());
+
+            //uncomment these later once you remake the pages with PixelArtURL
 
 
             //add to DB
