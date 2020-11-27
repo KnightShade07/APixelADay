@@ -49,6 +49,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
+            @*This td is for the PixelArtURL, implement this once the invalid column exception gets fixed*@
+            <td>
+
+            </td>
             <td>
                 
                 <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Edit">Edit</a>
