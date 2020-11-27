@@ -82,13 +82,17 @@ namespace APixelADay.Controllers
             //use real connection string for development, so we can swap out for production
             //string.
             BlobServiceClient blobService = new BlobServiceClient("UseDevelopmentStorage=true");
-            
+
 
             //creates container to hold BLOBs.
-            //TODO: Handle Exception if Container already exists.
-            BlobContainerClient containerClient = await blobService.CreateBlobContainerAsync("PixelArts");
+            BlobContainerClient containerClient = blobService.GetBlobContainerClient("PixelArts");
+            if (!containerClient.Exists())
+            {
+                await containerClient.CreateAsync();
+                await containerClient.SetAccessPolicyAsync(PublicAccessType.Blob);
+            }
 
-            await containerClient.SetAccessPolicyAsync(PublicAccessType.Blob);
+            
             
 
             //Add BLOB to container.
