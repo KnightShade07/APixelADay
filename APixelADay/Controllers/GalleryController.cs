@@ -58,25 +58,21 @@ namespace APixelADay.Controllers
 
             //This check throws a  NullException, commented out for now, fix it later.
 
-            /*if(Pixel.Length = 0)
+            /*if(FileUploadHelper.IsFileEmpty(Pixel))
             {
                 //Add Error.
                 //return view.
             } */
 
-            string extension = Path.GetExtension(Pixel.FileName).ToLower();
-            string[] permittedExtensions = { ".png", ".gif" };
+            
 
-            if (!permittedExtensions.Contains(extension))
+            if (!FileUploadHelper.IsValidExtension(Pixel, FileUploadHelper.FileTypes.Photo))
             {
                 //Add error message
                 //return view.
             }
 
-            //Generate Unique file name.
-            //Save to storage.
-           string account = _config.GetSection("StorageAccountName").Value;
-           string key = _config.GetSection("StorageAccountKey").Value;
+            
 
 
             //use real connection string for development, so we can swap out for production
