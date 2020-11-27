@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using APixelADay.Data;
 using APixelADay.Models;
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -73,6 +74,21 @@ namespace APixelADay.Controllers
             //Save to storage.
            string account = _config.GetSection("StorageAccountName").Value;
            string key = _config.GetSection("StorageAccountKey").Value;
+
+
+            //use real connection string for development, so we can swap out for production
+            //string.
+            BlobServiceClient blobService = new BlobServiceClient("UseDevelopmentStorage=true");
+
+            //creates container to hold BLOBs.
+            BlobContainerClient containerClient = await blobService.CreateBlobContainerAsync("PixelArts");
+
+            //Add BLOB to container.
+            string newfileName = Guid.NewGuid().ToString() + extension;
+            BlobClient blobClient = containerClient.GetBlobClient(newfileName);
+
+            using FileStream fileStream = System.IO.File.OpenRead("");
+            await blobClient.UploadAsync(p.PixelArtPhoto.OpenReadStream());
 
 
             //add to DB
