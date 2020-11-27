@@ -58,7 +58,7 @@ namespace APixelADay.Controllers
 
             //This check throws a  NullException, commented out for now, fix it later.
 
-            /*if(Pixel.Length > 0)
+            /*if(Pixel.Length = 0)
             {
                 //Add Error.
                 //return view.
