@@ -64,7 +64,7 @@ namespace APixelADay.Controllers
                 //return view.
             } */
 
-            
+
 
             if (!FileUploadHelper.IsValidExtension(Pixel, FileUploadHelper.FileTypes.Photo))
             {
@@ -72,6 +72,21 @@ namespace APixelADay.Controllers
                 //return view.
             }
 
+            FileStream fileStream = await UploadBlob(p, Pixel);
+
+
+
+
+            //add to DB
+            _context.PixelArts.Add(p);
+            //makes sure the changes are saved/executed.
+            await _context.SaveChangesAsync();
+            //redirect back to Gallery Page
+            return RedirectToAction("Gallery");
+        }
+
+        private async Task<FileStream> UploadBlob(PixelArt p, IFormFile Pixel)
+        {
             string con = _config.GetSection("BlobStorageString").Value;
 
             BlobServiceClient blobService = new BlobServiceClient(con);
@@ -85,25 +100,15 @@ namespace APixelADay.Controllers
                 await containerClient.SetAccessPolicyAsync(PublicAccessType.Blob);
             }
 
-            
-            
+
+
 
             //Add BLOB to container.
             string newfileName = Guid.NewGuid().ToString() + Path.GetExtension(Pixel.FileName);
             BlobClient blobClient = containerClient.GetBlobClient(newfileName);
-
-            using FileStream fileStream = System.IO.File.OpenRead("");
+            FileStream fileStream = System.IO.File.OpenRead("");
             await blobClient.UploadAsync(p.PixelArtPhoto.OpenReadStream());
-
-            
-
-
-            //add to DB
-            _context.PixelArts.Add(p);
-            //makes sure the changes are saved/executed.
-            await _context.SaveChangesAsync();
-            //redirect back to Gallery Page
-           return RedirectToAction("Gallery");
+            return fileStream;
         }
 
         public  async Task <IActionResult> Edit(int id)
