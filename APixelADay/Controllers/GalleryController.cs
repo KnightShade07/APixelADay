@@ -17,10 +17,12 @@ namespace APixelADay.Controllers
     {
         private readonly PixelDBContext _context;
         private readonly IConfiguration _config;
-        public GalleryController(PixelDBContext context, IConfiguration config)
+        private readonly BlobStorageHelper _BlobHelper;
+        public GalleryController(PixelDBContext context, IConfiguration config, BlobStorageHelper blobHelper)
         {
             _context = context;
             _config = config;
+            _BlobHelper = blobHelper;
         }
         public async Task<IActionResult> Gallery(int? id)
         {
