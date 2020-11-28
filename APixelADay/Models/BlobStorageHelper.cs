@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +11,7 @@ namespace APixelADay.Models
 {
     public class BlobStorageHelper
     {
-        private async Task<FileStream> UploadBlob(PixelArt p, IFormFile Pixel)
+        public async Task<FileStream> UploadBlob(PixelArt p, IFormFile Pixel)
         {
             string con = _config.GetSection("BlobStorageString").Value;
 
