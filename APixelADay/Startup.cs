@@ -27,6 +27,7 @@ namespace APixelADay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<BlobStorageHelper, BlobStorageHelper>();
             //AddDbContextPool is better than DbContext because it does not
             //create a new connection every single time this is called,
             //it checks for an existing Dbcontext method.
