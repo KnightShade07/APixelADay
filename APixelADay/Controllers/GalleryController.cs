@@ -16,12 +16,10 @@ namespace APixelADay.Controllers
     public class GalleryController : Controller
     {
         private readonly PixelDBContext _context;
-        private readonly IConfiguration _config;
         private readonly BlobStorageHelper _BlobHelper;
         public GalleryController(PixelDBContext context, IConfiguration config, BlobStorageHelper blobHelper)
         {
             _context = context;
-            _config = config;
             _BlobHelper = blobHelper;
         }
         public async Task<IActionResult> Gallery(int? id)
@@ -74,7 +72,7 @@ namespace APixelADay.Controllers
                 //return view.
             }
 
-            FileStream fileStream = await UploadBlob(p, Pixel);
+            FileStream fileStream =  await _BlobHelper.UploadBlob(p, p.PixelArtPhoto);
 
 
 
