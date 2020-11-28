@@ -17,7 +17,7 @@ namespace APixelADay.Models
         {
             _config = config;
         }
-        public async Task<FileStream> UploadBlob(PixelArt p, IFormFile Pixel)
+        public async Task<FileStream> UploadBlob( IFormFile Pixel)
         {
             string con = _config.GetSection("BlobStorageString").Value;
 
@@ -39,7 +39,7 @@ namespace APixelADay.Models
             string newfileName = Guid.NewGuid().ToString() + Path.GetExtension(Pixel.FileName);
             BlobClient blobClient = containerClient.GetBlobClient(newfileName);
             FileStream fileStream = System.IO.File.OpenRead("");
-            await blobClient.UploadAsync(p.PixelArtPhoto.OpenReadStream());
+            await blobClient.UploadAsync(Pixel.OpenReadStream());
             return fileStream;
         }
     }
