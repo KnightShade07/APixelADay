@@ -28,7 +28,7 @@ namespace APixelADay.Models
         //This results in an invalid column name, for now just comment this out and get help from Mr.
         //Ortiz on Monday
 
-        //public string PixelArtURL { get; set; }
+        public string PixelArtURL { get; set; }
 
         /// <summary>
         /// The title given to pixel art
