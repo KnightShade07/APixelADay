@@ -21,7 +21,7 @@ namespace APixelADay.Models
         /// NOTE: Mr Ortiz uses a PhotoURL Variable instead, consult him on Monday for possible courses of action.
         /// This Image variable was a relic from before I started this quarter.
         /// </summary>
-        public byte[] Image { get; set; }
+        
         [NotMapped]
         public IFormFile PixelArtPhoto { get; set; }
 
