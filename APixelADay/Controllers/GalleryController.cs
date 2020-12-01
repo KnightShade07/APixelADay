@@ -58,11 +58,11 @@ namespace APixelADay.Controllers
 
             //This check throws a  NullException, commented out for now, fix it later.
 
-            /*if(FileUploadHelper.IsFileEmpty(Pixel))
+            if(FileUploadHelper.IsFileEmpty(Pixel))
             {
                 //Add Error.
                 //return view.
-            } */
+            } 
 
 
 
