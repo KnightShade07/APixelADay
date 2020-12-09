@@ -7,12 +7,14 @@ using APixelADay.Data;
 using APixelADay.Models;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace APixelADay.Controllers
 {
+    [Authorize(Roles = IdentityHelper.Administrator)]
     public class GalleryController : Controller
     {
         private readonly PixelDBContext _context;
@@ -22,6 +24,7 @@ namespace APixelADay.Controllers
             _context = context;
             _BlobHelper = blobHelper;
         }
+
         public async Task<IActionResult> Gallery(int? id)
         {
             int pageNum = id ?? 1;
