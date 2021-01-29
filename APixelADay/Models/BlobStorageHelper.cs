@@ -24,7 +24,7 @@ namespace APixelADay.Models
             BlobServiceClient blobService = new BlobServiceClient(con);
 
             //creates container to hold BLOBs.
-            //BlobContainerClient blobContainerClient = new BlobContainerClient("UseDevelopmentStorage=true", "sample-container")
+            //container name should NOT have any special characters or capitals.
             BlobContainerClient containerClient = new BlobContainerClient("UseDevelopmentStorage=true","pixel-arts");
             //makes sure container exists
             if (!containerClient.Exists())
