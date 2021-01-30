@@ -17,14 +17,15 @@ namespace APixelADay.Models
         {
             _config = config;
         }
-        public async Task<FileStream> UploadBlob( IFormFile Pixel)
+        public async Task<string> UploadBlob( IFormFile Pixel)
         {
             string con = _config.GetSection("BlobStorageString").Value;
 
             BlobServiceClient blobService = new BlobServiceClient(con);
 
             //creates container to hold BLOBs.
-            BlobContainerClient containerClient = blobService.GetBlobContainerClient("PixelArts");
+            //container name should NOT have any special characters or capitals!
+            BlobContainerClient containerClient = new BlobContainerClient("UseDevelopmentStorage=true","pixel-arts");
             //makes sure container exists
             if (!containerClient.Exists())
             {
@@ -38,9 +39,8 @@ namespace APixelADay.Models
             //Add BLOB to container.
             string newfileName = Guid.NewGuid().ToString() + Path.GetExtension(Pixel.FileName);
             BlobClient blobClient = containerClient.GetBlobClient(newfileName);
-            FileStream fileStream = System.IO.File.OpenRead("");
             await blobClient.UploadAsync(Pixel.OpenReadStream());
-            return fileStream;
+            return newfileName;
         }
     }
 }

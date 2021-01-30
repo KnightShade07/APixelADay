@@ -75,7 +75,7 @@ namespace APixelADay.Controllers
                 //return view.
             }
 
-            FileStream fileStream =  await _BlobHelper.UploadBlob(p.PixelArtPhoto);
+            string pixelArtName =  await _BlobHelper.UploadBlob(p.PixelArtPhoto);
 
 
 
