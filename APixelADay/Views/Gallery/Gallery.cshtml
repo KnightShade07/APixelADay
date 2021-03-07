@@ -44,7 +44,6 @@
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
                  @{string fullPhotoURL = storageURLStart + item.PixelArtURL;}
-            @*This td is for the PixelArtURL, implement this once the invalid column exception gets fixed*@
               
         <td>
             <img src="@(fullPhotoURL)" height="150" alt="Photo of @item.PixelArtPhoto" />
