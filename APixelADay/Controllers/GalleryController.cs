@@ -76,7 +76,7 @@ namespace APixelADay.Controllers
             }
 
             string pixelArtName =  await _BlobHelper.UploadBlob(p.PixelArtPhoto);
-
+            p.PixelArtURL = pixelArtName;
 
 
 
