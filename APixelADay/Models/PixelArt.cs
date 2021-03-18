@@ -67,5 +67,9 @@ namespace APixelADay.Models
         
         [DisplayName("Day Count: ")]
         public string DayCount { get; set; }
+        /// <summary>
+        /// Description of what the pixel art is and where it's from.
+        /// </summary>
+        public string Description { get; set; }
     }
 }
