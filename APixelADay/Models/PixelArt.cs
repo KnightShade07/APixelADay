@@ -64,6 +64,8 @@ namespace APixelADay.Models
         /// some pixel art pieces can take multiple days, so you would have to say
         /// "Day 32 - 33", for example. 
         /// </summary>
+        
+        [DisplayName("Day Count: ")]
         public string DayCount { get; set; }
     }
 }
