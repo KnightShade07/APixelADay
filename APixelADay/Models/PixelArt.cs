@@ -62,8 +62,10 @@ namespace APixelADay.Models
         /// This is the variable that will keep track of the day count
         /// for pixel art. It is a string instead of an int because
         /// some pixel art pieces can take multiple days, so you would have to say
-        /// "Day 32 - 33", for example. Commented out for now because it produces an error.
+        /// "Day 32 - 33", for example. 
         /// </summary>
-        //public string DayCount { get; set; }
+        
+        [DisplayName("Day Count: ")]
+        public string DayCount { get; set; }
     }
 }
