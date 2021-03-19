@@ -36,7 +36,7 @@ namespace APixelADay.Models
         /// <summary>
         /// The title given to pixel art
         /// </summary>
-
+        [DisplayName("Title: ")]
         public string Title  { get; set; }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace APixelADay.Models
         /// <summary>
         /// How big the canvas was for the pixel art.
         /// </summary>
-
+        [DisplayName("Dimensions: ")]
         public string Dimensions { get; set; }
         /// <summary>
         /// This is the variable that will keep track of the day count
@@ -70,6 +70,7 @@ namespace APixelADay.Models
         /// <summary>
         /// Description of what the pixel art is and where it's from.
         /// </summary>
+        [DisplayName("Description: ")]
         public string Description { get; set; }
     }
 }
