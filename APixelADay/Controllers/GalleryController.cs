@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace APixelADay.Controllers
 {
-    [Authorize(Roles = IdentityHelper.Administrator)]
+    [Authorize(Roles = "Administrator,User")]
     public class GalleryController : Controller
     {
         private readonly PixelDBContext _context;
@@ -46,6 +46,7 @@ namespace APixelADay.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = IdentityHelper.Administrator)]
         public IActionResult Add()
         {
            return View();
@@ -88,8 +89,8 @@ namespace APixelADay.Controllers
             return RedirectToAction("Gallery");
         }
 
-        
 
+        [Authorize(Roles = IdentityHelper.Administrator)]
         public  async Task <IActionResult> Edit(int id)
         {
             //get pixel art with corrosponding id
@@ -112,6 +113,7 @@ namespace APixelADay.Controllers
             return View(p);
         }
         [HttpGet]
+        [Authorize(Roles = IdentityHelper.Administrator)]
         public  async Task<IActionResult> Delete(int id)
         {
             PixelArt p = await PixelDBManager.GetSinglePixelAsync(id, _context);
