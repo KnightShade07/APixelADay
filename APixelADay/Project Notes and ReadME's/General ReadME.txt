@@ -8,6 +8,11 @@ How to create READMEs so you don't forget:
 2. Right click in the Solution Explorer, go to Add, New Item, then select "Text File", click Add.
 3. Rename the ReadME to whatever is necessary for your project.
 
+How to display images in your website:
+1. (Optional) Create an "images" folder.
+2. Path to the image on the page you want it displayed on.
+Ex: (<img src ="~/images/APixelADay Logo Transparent.png" />)
+
 **************************
  2.  ABOUT THIS PROJECT
 **************************
