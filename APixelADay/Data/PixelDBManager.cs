@@ -15,7 +15,6 @@ namespace APixelADay.Data
     /// </summary>
     public  static class PixelDBManager
     {
-        //The methods do not have to be async right now, just get them down on paper...err, computer screen!
         /// <summary>
         /// Gets all pixels from the database.
         /// </summary>
