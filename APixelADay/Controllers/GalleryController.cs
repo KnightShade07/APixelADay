@@ -37,8 +37,7 @@ namespace APixelADay.Controllers
             int totalPages = (int)Math.Ceiling((double)numPixels / PageSize);
             //passes the page data to the view.
             ViewData["MaxPage"] = totalPages;
-            //Refactor into PixelDBManager class later,
-            //for now, just get it working.
+            
 
             //gets all the pixel art from the database.
             List<PixelArt> pixelArts =  await PixelDBManager.GetPageOfPixelsAsync(_context, PageSize, pageNum);
@@ -57,10 +56,8 @@ namespace APixelADay.Controllers
         public async Task <IActionResult> Add(PixelArt p)
         {
 
-            //TODO: Validate Product Photo.
             IFormFile Pixel = p.PixelArtPhoto;
 
-            //This check throws a  NullException, commented out for now, fix it later.
 
             if(FileUploadHelper.IsFileEmpty(Pixel))
             {
@@ -78,8 +75,6 @@ namespace APixelADay.Controllers
 
             string pixelArtName =  await _BlobHelper.UploadBlob(p.PixelArtPhoto);
             p.PixelArtURL = pixelArtName;
-
-
 
             //add to DB
             _context.PixelArts.Add(p);

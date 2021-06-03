@@ -21,7 +21,7 @@ namespace APixelADay.Models
             }
             return false;
         }
-
+        //picture validation
         public static bool IsValidExtension(IFormFile file, FileTypes type)
         {
             string extension = Path.GetExtension(file.FileName).ToLower();

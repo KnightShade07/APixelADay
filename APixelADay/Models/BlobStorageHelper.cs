@@ -33,9 +33,6 @@ namespace APixelADay.Models
                 await containerClient.SetAccessPolicyAsync(PublicAccessType.Blob);
             }
 
-
-
-
             //Add BLOB to container.
             string newfileName = Guid.NewGuid().ToString() + Path.GetExtension(Pixel.FileName);
             BlobClient blobClient = containerClient.GetBlobClient(newfileName);
