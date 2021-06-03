@@ -14,7 +14,7 @@ namespace APixelADay.Models
         {
 
         }
-
+        //used for database communication
         public DbSet<PixelArt> PixelArts { get; set; }
     }
 }

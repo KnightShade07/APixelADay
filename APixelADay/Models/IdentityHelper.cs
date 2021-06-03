@@ -10,8 +10,12 @@ namespace APixelADay.Models
 {
     public class IdentityHelper
     {
-        //role names
+        //Administrators can do things like update, edit, and create
+        //new pixel arts
         public const string Administrator = "Administrator";
+        //users can look at various pages and pixel arts,
+        //but cannot access administrator pages like where
+        //the admins create new pixel art pieces.
         public const string User = "User";
         public static void SetIdentityOptions(IdentityOptions options)
         {
@@ -45,6 +49,7 @@ namespace APixelADay.Models
 
         internal static async Task CreateDefaultAdministrator(IServiceProvider serviceProvider)
         {
+            //Admin login details.
             const string email = "admin@yahoo.com";
             const string username = "Admin";
             const string password = "TestPassword356";
