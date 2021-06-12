@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="Development Notes\Source Control Notes\" />
+    <Folder Include="Development Notes\Project Notes\" />
   </ItemGroup>
 
 </Project>
