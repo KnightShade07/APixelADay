@@ -23,7 +23,7 @@ This project is a pixel art gallery that functions using an SQL Database and BLO
  3.  CREATING AN ACCOUNT
 **************************
 
-In order to use the website, the user must create an account. A username must be chosen, and a password must be created.
+In order to use the website, the user/administrator must create an account. A username must be chosen, and a password must be created.
 The password must be at least 10 characters long.
 
 **************************
