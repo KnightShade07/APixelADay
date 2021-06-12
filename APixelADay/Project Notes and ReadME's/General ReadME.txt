@@ -90,4 +90,29 @@ The default will look something like this:
 
  4. You should now be redirected to whatever page you set the asp-actions parameter to.
 
- 
+ **************************
+ 7. ADDING MIGRATIONS
+**************************
+
+In order to hook up the database to your website, you will need something called a Code-First Migration
+
+To create a CF Migration, you will need to:
+1. Go to your upper toolbar where File and Edit are.
+2. Find the "Tools" Section.
+3. Click on that, go down and select "NuGet Package Manager".
+4. From those options, select "Package Manager Console".
+5. You've just opened the PMC or "Package Manager Console"!
+6. Now, all you need to do is type in these commands:
+
+This command enables migrations for this project, if they haven't been already,
+and it will also create a Migrations folder for the project in the Solution Explorer automatically:
+
+enable-migrations
+
+This command adds a migration:
+add-migration InitialMigration
+
+Note: The InitialMigration part is its name, so feel free to change that to whatever you like, within reason.
+
+
+
