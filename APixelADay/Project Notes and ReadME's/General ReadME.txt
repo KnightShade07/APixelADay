@@ -86,6 +86,8 @@ The default will look something like this:
  2. Change what's inside the "" after asp-action to whatever you titled the view
  3. (Optional) If your website is not list based, you may also need to change the
  "Back to List" text to better reflect what your website does to the user.
+ Ex: (You want to change the text from "Back to List" to something like "Back to Home Page").
+
  4. You should now be redirected to whatever page you set the asp-actions parameter to.
 
- Ex: (You want to change the text from "Back to List" to something like "Back to Home Page").
+ 
