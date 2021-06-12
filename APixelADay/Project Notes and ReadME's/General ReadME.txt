@@ -40,7 +40,7 @@ access is denied because they do not have the role required to perform those act
  5. CREATING AUTO GENERATED CRUD PAGES ("Views")
 **************************
 
-CRUD stands for "Create,Edit/Update, Delete", and is how you design website pages to add data functionality.
+CRUD stands for "Create,Edit/Update, Delete", and it's how you design website pages to add data functionality.
 
 In order to add CRUD Pages, you will need to:
 
