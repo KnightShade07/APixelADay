@@ -1,0 +1,4 @@
+﻿How to display images in your website:
+1. (Optional) Create an "images" folder.
+2. Path to the image on the page you want it displayed on.
+Ex: (<img src ="~/images/APixelADay Logo Transparent.png" />)
