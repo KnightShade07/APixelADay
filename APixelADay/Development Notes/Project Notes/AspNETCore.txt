@@ -1,0 +1,10 @@
+﻿
+**************************
+ 4.  ASP.NET CORE
+**************************
+
+ASP .NET CORE is the framework used for this project, it allows for security features to be added to a project, like roles, and blocking off certain
+pages from roles that do not have permission to view those pages.
+
+(Ex: User tries to access page where new pixel art entries are created and added to the gallery,
+access is denied because they do not have the role required to perform those actions)

@@ -1,0 +1,36 @@
+﻿
+**************************
+ 6. PROPERLY WIRING NEWLY CREATED PAGES
+**************************
+
+Congrats, you've just created your first CRUD Page!!! Give yourself a pat on the back!
+
+There's just one tiny, teensy problem, it may not be linked correctly since CRUD Pages have defaults that may need to be changed.
+
+To do this, you need to:
+
+1. Go to your Controller assigned to the website, in my case it would be "GalleryController".
+2. Create a function for it.
+3. Have it return a view, with no parameter for now.
+This (the parameter) can be changed later at any time, so don't worry!
+
+EX: 
+
+public IActionResult Add()
+        {
+           return View();
+        }
+
+In the created View code itself:
+
+1. Make sure that the button that goes back to the previous page is linked correctly,
+The default will look something like this:
+
+<a asp-action="Index">Back to List</a>
+
+ 2. Change what's inside the "" after asp-action to whatever you titled the view
+ 3. (Optional) If your website is not list based, you may also need to change the
+ "Back to List" text to better reflect what your website does to the user.
+ Ex: (You want to change the text from "Back to List" to something like "Back to Home Page").
+
+ 4. You should now be redirected to whatever page you set the asp-actions parameter to.
