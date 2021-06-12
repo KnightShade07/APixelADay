@@ -17,7 +17,7 @@ Ex: (<img src ="~/images/APixelADay Logo Transparent.png" />)
  2.  ABOUT THIS PROJECT
 **************************
 
-This project is a pixel art gallery that functions using an SQL Database and BLOB (Binary Large Object, OB = Object) Storage for image handling
+This project is a pixel art gallery that functions using an SQL Database and BLOB (Binary Large Object, OB = Object) Storage for image handling.
 
 **************************
  3.  CREATING AN ACCOUNT
