@@ -44,10 +44,10 @@ CRUD stands for "Create,Edit/Update, Delete", and is how you design website page
 
 In order to add CRUD Pages, you will need to:
 
-1. Go to your folder where you want to create the pages, typically people put it in Views
+1. Go to your folder where you want to create the pages, typically people put it in Views.
 2. Right Click on the folder, select "Add".
-3. Select "View", and click "Add"
-4. Depending on your situation and context, you will either want an Empty Razor Page or a regular Razor Page
+3. Select "View", and click "Add".
+4. Depending on your situation and context, you will either want an Empty Razor Page or a regular Razor Page.
 5. Select your Template Type from the dropdown list.
 6. Select the class your CRUD Page/View will be working with.
 7. You may or may not need a Data Context Class, depending on the situation. If you don't, then skip this step.
