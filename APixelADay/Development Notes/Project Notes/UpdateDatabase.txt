@@ -1,0 +1,9 @@
+﻿*****************************
+		UPDATE-DATABASE
+*****************************
+
+"update-database" without the "" is a PMC command that is run
+whenever a significant change to the project is made that involves data.
+
+Some examples of this include making a new migration, or adding a new element to a class that
+the database uses, like forgetting to add a time datatype to a cooking website.
