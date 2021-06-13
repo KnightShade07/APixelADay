@@ -1,0 +1,40 @@
+﻿********************************
+		HELPER CLASSES
+********************************
+
+Helper Classes are useful when there is too much code to keep track of in one class.
+When that happens, we take the method in one class, and then put it in another, then we
+simply call on that helper class, then "drill" or navigate our way to the method call 
+in that class.
+
+Doing this helps us keep our code nice, easy to read, and organized!
+
+Helper Classes usually follow this naming convention
+
+EX: (Class Name) Toaster + "Helper", without the "". (Does not have to have the Helper convention, but its usually what is used)
+
+Example of a helper class being used:
+
+ //gets all the pixel art from the database.
+            List<PixelArt> pixelArts =  await PixelDBManager.GetPageOfPixelsAsync(_context, PageSize, pageNum);
+
+The method for getting pixel arts from the database, while not too bad in its size,:
+
+public async static Task <List<PixelArt>> GetPageOfPixelsAsync(PixelDBContext _context, int PageSize, int pageNum)
+        {
+            List<PixelArt> pixelArts =  await (from p in _context.PixelArts
+                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
+                                        .Take(PageSize)
+                                        .ToListAsync();
+            return pixelArts;
+        }
+
+would clutter up the GalleryController file, so that is why it was moved to a Helper class.
+
+In order to easily access a Helper Class or a method in a Helper Class, you can:
+
+1. Right Click a method call from that helper class or the helper class definition.
+2. Click "Go to Definition" in the dropdown menu.
+
+Your code is now easily organized, and you have a quick way of getting back to it
+whenever you need to!
