@@ -1,0 +1,37 @@
+﻿*****************************
+	PUSH AND PULL REQUESTS
+*****************************
+
+Source Control is an integral part of software development, as it covers for many situations a software developer or a web
+developer might face, like the power going out, or someone making a mistake, or many others.
+
+Push and Pull Requests are the main methods of how Source Control is used.
+
+A Push is where a developer pushes their code changes up to GitHub. This new code is then reviewed by a supervisor, a coworker, or a peer.
+
+If it is aproved after a review process, then it gets merged into the master branch.
+
+DO NOT ever work in the master branch, instead, create a new branch, and give it an appropriate name for the situation's context.
+
+You can create a new branch by:
+
+1. Clicking on the branch name icon in the lower right section of Visual Studio
+2. Selecting "Create a New Branch" from the menu
+3. Note: Special Characters are not allowed when creating a new branch.
+
+After you are done with working in that branch:
+1. If you are not already there, click the pencil icon to go to the Git Changes
+menu in the Solution Explorer when you are done working in that branch.
+2. Write a semi-short, but descriptive commit message in the description box.
+3. Depending on the situation, you can either stage your commits one by one,
+or write one message for them all, and then hit the "Commit All" button.
+4. Once that is done, click on the blue up arrow in the right hand corner of the Git Changes section.
+5. You've just pushed your commits up to GitHub!
+
+A Pull is where you drag the most recent commits into the master branch.
+
+You can do this by:
+1. Making sure you are in the master branch.
+2. Clicking the blue down arrow in the Git Changes Window.
+3. Your master branch is now up-to-date and you are now free to make another branch
+to start working on another feature (or in my case, more documentation! :) )
