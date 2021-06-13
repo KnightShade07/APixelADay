@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="Development Notes\Project Notes\ASPNETCoreFeaturesNotes\GeneralNotes\" />
+    <Folder Include="Development Notes\Project Notes\ASPNETCoreFeaturesNotes\CRUDFunctionalityNotes\" />
   </ItemGroup>
 
 </Project>
