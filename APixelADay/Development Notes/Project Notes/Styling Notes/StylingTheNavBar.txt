@@ -1,0 +1,5 @@
+﻿Styling the navbar is actually quite easy. If you want to change the navbar's color, all you have to do is this, add a "style":
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #e3f2fd;">
+
+NOTE: Style goes AFTER initial navbar class declaration, not inside of it.
