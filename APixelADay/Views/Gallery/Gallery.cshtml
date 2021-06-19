@@ -61,7 +61,7 @@
             <img src="@(fullPhotoURL)" height="150" alt="Photo of @item.PixelArtPhoto" />
         </td>
             <td>
-                
+                <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Details">Details</a>
                 <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Edit">Edit</a>
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PixelArtID">Delete</a>
             </td>
