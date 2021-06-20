@@ -135,9 +135,10 @@ namespace APixelADay.Controllers
             return View();
         }
 
-        public IActionResult Details()
+        public  async Task<IActionResult> Details(int id)
         {
-            return View();
+            PixelArt p = await PixelDBManager.GetSinglePixelAsync(id, _context);
+            return View(p);
         }
     }
 }
