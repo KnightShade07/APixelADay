@@ -1,0 +1,11 @@
+﻿If you're looking for how to hide elements on a Razor Page from the user because they don't need to see them, here's how!:
+
+<dt class = "col-sm-2">
+            @Html.HiddenFor(model => model.PixelArtID)
+        </dt>
+
+You simply use the @Html.HiddenFor function.
+
+And, for pages with input, you use:
+
+<input type="hidden">, just before <asp-for="">
