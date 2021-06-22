@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APixelADay.Models
 {
-    public class Comissions
+    public class Commissions
     {
         [Key]
         public int ComissionID { get; set; }
