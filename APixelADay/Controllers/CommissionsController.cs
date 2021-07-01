@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using APixelADay.Data;
+using APixelADay.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +12,17 @@ namespace APixelADay.Controllers
 {
     public class CommissionsController : Controller
     {
-        // GET: CommissionsController
-        public ActionResult Commissions()
+        private readonly PixelDBContext _context;
+
+        public CommissionsController(PixelDBContext context, IConfiguration config)
         {
-            return View();
+            _context = context;
+        }
+        
+        public async Task<IActionResult> Commissions(int? id)
+        {
+            List<CommissionsLog> commissionsLogs = await PixelDBManager.GetTotalCommissionsAsync(_context);
+            return View(commissionsLogs);
         }
 
         // GET: CommissionsController/Details/5
