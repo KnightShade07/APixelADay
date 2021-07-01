@@ -11,6 +11,7 @@ namespace APixelADay.Models
     {
         [Key]
         public int ComissionID { get; set; }
+        [DisplayName("Title: ")]
         public string Title { get; set; }
         [DisplayName("Price: ")]
         public decimal Price { get; set; }
