@@ -21,8 +21,17 @@ namespace APixelADay.Controllers
         
         public async Task<IActionResult> Commissions(int? id)
         {
-            List<CommissionsLog> commissionsLogs = await PixelDBManager.GetTotalCommissionsAsync(_context);
-            return View(commissionsLogs);
+            int pageNum = id ?? 1;
+            const int PageSize = 3;
+            ViewData["CurrentPage"] = pageNum;
+
+            int numCommissions = await PixelDBManager.GetTotalCommissionsAsync(_context);
+            //prevent integer division.
+            int totalPages = (int)Math.Ceiling((double)numCommissions / PageSize);
+            ViewData["MaxPage"] = totalPages;
+
+            List<CommissionsLog> commissionsLogs = await PixelDBManager.GetPageOfCommissionsAsync(_context, PageSize, pageNum);
+            return View();
         }
 
         // GET: CommissionsController/Details/5
