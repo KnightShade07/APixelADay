@@ -49,16 +49,11 @@ namespace APixelADay.Controllers
         // POST: CommissionsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(IFormCollection collection)
+        public async Task <ActionResult> Add(CommissionsLog c)
         {
-            try
-            {
-                return RedirectToAction(nameof(Commissions));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Commissions.Add(c);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Commissions");
         }
 
         // GET: CommissionsController/Edit/5
