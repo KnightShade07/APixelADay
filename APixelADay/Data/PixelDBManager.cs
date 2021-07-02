@@ -34,6 +34,14 @@ namespace APixelADay.Data
                                         .ToListAsync();
             return pixelArts;
         }
+
+        public async static Task<List<CommissionsLog>> GetPageOfCommissionsAsync(PixelDBContext _context, int pageSize, int pageNum)
+        {
+            List<CommissionsLog> commissionsLogs = await (from c in _context.Commissions
+                                                          select c).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToListAsync();
+            return commissionsLogs;
+        }
+
         /// <summary>
         /// Gets a single piece of pixel art from the database.
         /// </summary>
