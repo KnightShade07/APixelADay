@@ -41,7 +41,7 @@ namespace APixelADay.Controllers
         }
 
         // GET: CommissionsController/Create
-        public ActionResult Create()
+        public ActionResult Add()
         {
             return View();
         }
@@ -49,7 +49,7 @@ namespace APixelADay.Controllers
         // POST: CommissionsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Add(IFormCollection collection)
         {
             try
             {
