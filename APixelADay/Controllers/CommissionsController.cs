@@ -31,7 +31,7 @@ namespace APixelADay.Controllers
             ViewData["MaxPage"] = totalPages;
 
             List<CommissionsLog> commissionsLogs = await PixelDBManager.GetPageOfCommissionsAsync(_context, PageSize, pageNum);
-            return View();
+            return View(commissionsLogs);
         }
 
         // GET: CommissionsController/Details/5
