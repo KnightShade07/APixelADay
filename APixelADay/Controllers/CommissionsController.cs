@@ -57,24 +57,26 @@ namespace APixelADay.Controllers
         }
 
         // GET: CommissionsController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task <ActionResult> Edit(int id)
         {
-            return View();
+            CommissionsLog c = await PixelDBManager.GetSingleCommissionAsync(id, _context);
+            return View(c);
         }
 
         // POST: CommissionsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task <ActionResult> Edit(CommissionsLog c)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Commissions));
+                _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                ViewData["Message"] = "The Commission Entry was updated successfully!";
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(c);
         }
 
         // GET: CommissionsController/Delete/5
