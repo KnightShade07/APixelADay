@@ -1,0 +1,7 @@
+﻿To link to pages that do not have a controller associated with them, you can use asp-area and asp-page!
+
+Example:
+
+<a class="btn btn-secondary" asp-area="Identity" asp-page="/Account/Register">Get Started!</a>
+
+Note: When using asp-area, be sure to include "/" (without the quotes) in order to drill down and navigate to the correct page.
