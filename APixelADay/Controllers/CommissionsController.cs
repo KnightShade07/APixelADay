@@ -80,24 +80,26 @@ namespace APixelADay.Controllers
         }
 
         // GET: CommissionsController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task <ActionResult> Delete(int id)
         {
-            return View();
+            CommissionsLog c = await PixelDBManager.GetSingleCommissionAsync(id, _context);
+            return View(c);
         }
 
         // POST: CommissionsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [ActionName("Delete")]
+        public async Task <ActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Commissions));
-            }
-            catch
-            {
-                return View();
-            }
+            CommissionsLog c = await PixelDBManager.GetSingleCommissionAsync(id, _context);
+            _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = $"{c.Title} was deleted successfully";
+            return RedirectToAction("Commissions");
+            
         }
     }
 }
