@@ -1,0 +1,9 @@
+﻿If you want to inject C# onto an HTML Razor Page, you can use the "@" symbol! (without the quotes).
+
+Example:
+
+//Hides page from person if they do not have administrator permissions.
+@if (User.IsInRole(IdentityHelper.Administrator))
+{
+  <a class="nav-link text-dark" asp-controller="Commissions" asp-action="Commissions">Commissions Log</a>
+}
