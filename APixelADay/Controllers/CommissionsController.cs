@@ -35,9 +35,10 @@ namespace APixelADay.Controllers
         }
 
         // GET: CommissionsController/Details/5
-        public ActionResult Details(int id)
+        public  async Task<ActionResult> Details(int id)
         {
-            return View();
+            CommissionsLog c = await PixelDBManager.GetSingleCommissionAsync(id, _context);
+            return View(c);
         }
 
         // GET: CommissionsController/Create
