@@ -53,6 +53,14 @@ namespace APixelADay.Data
                           select pixel).SingleAsync(); //gets a single item from the database
             
         }
+
+        public async static Task<CommissionsLog> GetSingleCommissionAsync(int id, PixelDBContext _context)
+        {
+            return await (from commission in _context.Commissions
+                          where commission.ComissionID == id
+                          select commission).SingleAsync();
+        }
+
         //Gets all commissions from the database.
         public async static Task<int> GetTotalCommissionsAsync(PixelDBContext _context)
         {
