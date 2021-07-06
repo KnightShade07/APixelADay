@@ -10,6 +10,24 @@
 <p>
     <a asp-action="Add">Create New</a>
 </p>
+@* Prints out page numbers (pagination) *@
+<ul class="pagination">
+    @for (int i = 1; i <= (int)ViewData["MaxPage"]; i++)
+    {
+        if (i == (int)ViewData["CurrentPage"])
+        {
+            <li class="page-item active">
+                <a class="page-link" asp-action="Gallery" asp-route-id="@i">@i</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Gallery" asp-route-id="@i">@i</a>
+            </li>
+        }
+    }
+</ul>
 <table class="table">
     <thead>
         <tr>
@@ -35,56 +53,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DayCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeTaken)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dimensions)
-            </td>
-                 @{string fullPhotoURL = storageURLStart + item.PixelArtURL;}
-              
-        <td>
-            <img src="@(fullPhotoURL)" height="150" alt="Photo of @item.PixelArtPhoto" />
-        </td>
-            <td>
-                <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Details">Details</a>
-                <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Edit">Edit</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PixelArtID">Delete</a>
-            </td>
-            
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeTaken)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dimensions)
+                </td>
+                @{string fullPhotoURL = storageURLStart + item.PixelArtURL;}
+
+                <td>
+                    <img src="@(fullPhotoURL)" height="150" alt="Photo of @item.PixelArtPhoto" />
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Details">Details</a>
+                    <a class="btn btn-secondary" asp-route-id="@item.PixelArtID" asp-action="Edit">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PixelArtID">Delete</a>
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>
-@* Prints out page numbers (pagination) *@
-<ul class="pagination">
-    @for (int i = 1; i <= (int)ViewData["MaxPage"]; i++)
-    {
-        if (i == (int)ViewData["CurrentPage"])
-        {
-            <li class="page-item active">
-                <a class="page-link" asp-action="Gallery" asp-route-id="@i">@i</a>
-            </li>
-        }
-        else
-        {
-            <li class="page-item">
-                <a class="page-link" asp-action="Gallery" asp-route-id="@i">@i</a>
-            </li>
-        }
-    }
-</ul>
+
