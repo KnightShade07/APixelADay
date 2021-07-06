@@ -1,5 +1,6 @@
 ﻿using APixelADay.Data;
 using APixelADay.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace APixelADay.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CommissionsController : Controller
     {
         private readonly PixelDBContext _context;
