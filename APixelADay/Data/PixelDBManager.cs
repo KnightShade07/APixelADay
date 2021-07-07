@@ -28,8 +28,7 @@ namespace APixelADay.Data
         /// </summary>
        public async static Task <List<PixelArt>> GetPageOfPixelsAsync(PixelDBContext _context, int PageSize, int pageNum)
         {
-            List<PixelArt> pixelArts =  await (from p in _context.PixelArts
-                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
+            List<PixelArt> pixelArts =  await (_context.PixelArts.OrderBy(p => p.DateCreated)).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
                                         .Take(PageSize)
                                         .ToListAsync();
             return pixelArts;
@@ -37,8 +36,7 @@ namespace APixelADay.Data
 
         public async static Task<List<CommissionsLog>> GetPageOfCommissionsAsync(PixelDBContext _context, int pageSize, int pageNum)
         {
-            List<CommissionsLog> commissionsLogs = await (from c in _context.Commissions
-                                                          select c).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToListAsync();
+            List<CommissionsLog> commissionsLogs = await (_context.Commissions.OrderBy(c => c.DateCompleted)).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToListAsync();
             return commissionsLogs;
         }
 
