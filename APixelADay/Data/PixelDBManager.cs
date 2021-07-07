@@ -36,8 +36,7 @@ namespace APixelADay.Data
 
         public async static Task<List<CommissionsLog>> GetPageOfCommissionsAsync(PixelDBContext _context, int pageSize, int pageNum)
         {
-            List<CommissionsLog> commissionsLogs = await (from c in _context.Commissions
-                                                          select c).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToListAsync();
+            List<CommissionsLog> commissionsLogs = await (_context.Commissions.OrderBy(c => c.DateCompleted)).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToListAsync();
             return commissionsLogs;
         }
 
