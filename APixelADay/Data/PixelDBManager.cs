@@ -28,8 +28,7 @@ namespace APixelADay.Data
         /// </summary>
        public async static Task <List<PixelArt>> GetPageOfPixelsAsync(PixelDBContext _context, int PageSize, int pageNum)
         {
-            List<PixelArt> pixelArts =  await (from p in _context.PixelArts
-                                        select p).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
+            List<PixelArt> pixelArts =  await (_context.PixelArts.OrderBy(p => p.DateCreated)).Skip(PageSize * (pageNum - 1)) // Skip() must be before Take()
                                         .Take(PageSize)
                                         .ToListAsync();
             return pixelArts;
