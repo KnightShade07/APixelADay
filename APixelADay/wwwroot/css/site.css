@@ -70,3 +70,7 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+@font-face {
+    font-family: "VCR";
+    src:url(../fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf)
+}
