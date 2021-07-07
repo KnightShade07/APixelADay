@@ -75,4 +75,8 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+li {
+    font-family: VCR;
+}
+
 
