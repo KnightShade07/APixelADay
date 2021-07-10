@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="Services\" />
+    <Folder Include="Services\Mailer\" />
   </ItemGroup>
 
 </Project>
