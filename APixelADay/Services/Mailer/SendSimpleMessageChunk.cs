@@ -10,11 +10,6 @@ namespace APixelADay.Services.Mailer
 {
     public class SendSimpleMessageChunk
     {
-        public static void Main(string[] args)
-        {
-            Console.WriteLine(SendSimpleMessage().Content.ToString());
-        }
-
         public static IRestResponse SendSimpleMessage()
         {
             RestClient client = new RestClient();
